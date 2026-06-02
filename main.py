@@ -1,6 +1,7 @@
 # This code defines an Email class that represents an email message.
 #  The class has attributes for the sender, receiver, subject, body, and read status of the email.
-#  It also includes methods to mark the email as read, display the email content, send an email, receive an email, read an email,delete an email,id,stamp.
+#  It also includes methods to mark the email as read, display the email content, 
+# send an email, receive an email, read an email,delete an email,id,stamp.
 #  The __str__ method provides a string representation of the email for easy display.
 # I  would work on improvising this specific project for the next couple of days to make it more robust and functional.
 
@@ -23,7 +24,6 @@ class Email:
 
         self.id = Email.next_id
         Email.next_id += 1
-
         self.sender = sender
         self.receiver = receiver
         self.subject = subject
