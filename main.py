@@ -70,7 +70,47 @@ class Email:
     def delete_email(self,email):
         if not isinstance(email, Email):
             raise TypeError("Expected an Email object.")
-        print(f"Email from {email.sender} with subject: {email.subject} has been deleted.")    
+        print(f"Email from {email.sender} with subject: {email.subject} has been deleted.") 
+
+
+
+#additional class to manage multiple emails in a mailbox
+class Mailbox:
+    def __init__(self):
+        self.emails = []
+
+    def add_email(self,email):
+        if not isinstance(email, Email):
+            raise TypeError("Expected an Email object.")
+        self.emails.append(email)
+        print(f"Email from {email.sender} added to mailbox.")        
+
+
+    def show_inbox(self):
+        print("\nInbox:")
+        if not self.emails:
+            print("Inbox is empty.")
+            return
+        for email in self.emails:
+            print(email)      
+
+
+    def delete_email(self,email_id):
+        for email in self.emails:
+            if email.id == email_id:
+                self.emails.remove(email)
+                return True
+        return False    
+    
+    def find_email(self, email_id):
+        for email in self.emails:
+            if email.id == email_id:
+                return email
+        return None
+    
+
+    def total_emails(self):
+        return len(self.emails)
 
 email1 = Email(
     "alice@gmail.com",
@@ -88,3 +128,10 @@ sent_email = email1.send_email(
 )
 
 email1.read_email(sent_email)
+
+mailbox = Mailbox()
+mailbox.add_email(sent_email)
+mailbox.show_inbox()
+mailbox.delete_email(sent_email.id)
+mailbox.show_inbox()
+print("Total Emails in Mailbox:", mailbox.total_emails())
